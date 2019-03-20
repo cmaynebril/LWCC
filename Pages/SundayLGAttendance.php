@@ -87,7 +87,7 @@
                         <div class="form-check-inline" id="formGroupExampleInput" style="width:100%">
                             <select class="form-control" name="memberName">
                                     <?php
-                                        $sql = "SELECT * FROM tblmembers WHERE NetworkLeader='".$_SESSION['network']."' ORDER BY Name ASC";
+                                        $sql = "SELECT * FROM tblmembers WHERE Mentor='".$_SESSION['Mentorname']."' AND NetworkLeader='".$_SESSION['network']."' ORDER BY Name ASC";
                                         $result = mysqli_query($conn, $sql);
                                         $queryResult = mysqli_num_rows($result);
                                         if($queryResult > 0)
