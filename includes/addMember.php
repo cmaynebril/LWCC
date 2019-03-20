@@ -26,8 +26,8 @@ if (isset($_POST['SaveMember']))
 if ($isMentor == "Yes") {
         
                 $hashedPwd = password_hash($password, PASSWORD_DEFAULT);
-                $sql1 = "INSERT INTO tbluseraccounts(Email,Password,Network) 
-                VALUES('$emailAddress', '$hashedPwd', '$networkLeader')";
+                $sql1 = "INSERT INTO tbluseraccounts(Name,Email,Password,Network) 
+                VALUES('$name','$emailAddress', '$hashedPwd', '$networkLeader')";
                   
                         $query = mysqli_query($conn, $sql1) or die(mysqli_error($conn));
                         header("Location: ../Pages/MemberList.php");
