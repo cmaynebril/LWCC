@@ -28,6 +28,7 @@ if (isset($_POST['btn'])) {
 				
 					$_SESSION['email'] = $row['Email'];
 					$_SESSION['network'] = $row['Network'];
+					$_SESSION['Mentorname'] = $row['Name'];
 					
 					header("Location: ../Pages/MainDashboard.php?Login=success");
 					exit();
