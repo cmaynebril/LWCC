@@ -188,6 +188,7 @@
                     <div class="row" style="padding-bottom:10px; padding-top:15px;">
                         <div class="col-lg-3" style="padding-top:10px;">
                                 <label class="form-check-label" style="padding-left:20px;">
+                                    <input type="hidden" name="Sundaycheck" value="0">
                                     <input type="checkbox" class="form-check-input" value="1" name="Sundaycheck">Sunday
                                 </label>
                         </div>
@@ -206,6 +207,7 @@
                     <div class="row" style="padding-bottom:10px;padding-top:15px;">
                         <div class="col-lg-3" style="padding-top:10px;">
                             <label class="form-check-label" style="padding-left:20px;">
+                            <input type="hidden" name="Lifegroupcheck" value="0">
                                 <input type="checkbox" class="form-check-input" value="1" name="Lifegroupcheck">Lifegroup
                             </label>
                         </div>
