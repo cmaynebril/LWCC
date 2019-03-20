@@ -3,7 +3,6 @@ if (isset($_POST['SaveJourney']))
 {
     require 'dbh.php';
     $name = $_POST['memberName'];
-    $month = $_POST['Month'];
     $mentor = $_POST['Mentor'];
     $networkLeader = $_POST['NetworkLeader'];
     $process = $_POST['Process'];
