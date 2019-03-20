@@ -15,7 +15,7 @@
                 <select class="form-control" name="FilterMember">
                 <option value="'.$_POST["FilterMember"].'">'.$_POST["FilterMember"].'</option>
                 ';
-                $sql = "SELECT * FROM tblmembers WHERE NetworkLeader='".$_SESSION['network']."' ORDER BY Name ASC";
+                $sql = "SELECT * FROM tblmembers WHERE Mentor='".$_SESSION['Mentorname']."' AND NetworkLeader='".$_SESSION['network']."' ORDER BY Name ASC";
                 $result = mysqli_query($conn, $sql);
                 $queryResult = mysqli_num_rows($result);
                     if($queryResult > 0)
@@ -35,7 +35,7 @@
             <select class="form-control" name="FilterMember">
             <option value=" "> </option>';
               
-                    $sql = "SELECT * FROM tblmembers WHERE NetworkLeader='".$_SESSION['network']."' ORDER BY Name ASC";
+                    $sql = "SELECT * FROM tblmembers WHERE Mentor='".$_SESSION['Mentorname']."' AND NetworkLeader='".$_SESSION['network']."' ORDER BY Name ASC";
                     $result = mysqli_query($conn, $sql);
                     $queryResult = mysqli_num_rows($result);
                         if($queryResult > 0)
@@ -79,7 +79,7 @@
                                 <select class="form-control" name="memberName">
                                     <option value=" "> </option>
                                         <?php
-                                            $sql = "SELECT * FROM tblmembers WHERE NetworkLeader='".$_SESSION['network']."' ORDER BY Name ASC";
+                                            $sql = "SELECT * FROM tblmembers WHERE Mentor='".$_SESSION['Mentorname']."' AND NetworkLeader='".$_SESSION['network']."' ORDER BY Name ASC";
                                             $result = mysqli_query($conn, $sql);
                                             $queryResult = mysqli_num_rows($result);
                                             if($queryResult > 0)
