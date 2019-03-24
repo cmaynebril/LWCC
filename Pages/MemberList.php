@@ -194,9 +194,9 @@
 
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="card" style=" height: 500px;">
+                    <div class="card" style="height: 100%;">
                         <div class="card-body">
-                        <div class="table-responsive-lg" style="height: 479px;">
+                        <div class="table-responsive-lg" style="height: 100%;">
                             <table class="table table-hover">
                                 <thead class="thead-light" style="text-align:center">
                                     <tr>

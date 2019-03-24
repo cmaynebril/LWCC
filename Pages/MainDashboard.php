@@ -26,7 +26,7 @@
                 </div>
         
                 <div class="col-lg-9">
-                    <div class="card" style=" height: 500px;">
+                    <div class="card" style=" height: 100%;">
                         <div class="card-body">
                             <div class="table-responsive-lg" style="height: 479px;">                     
                                 <table class="table table-hover">
