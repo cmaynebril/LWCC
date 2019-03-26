@@ -7,6 +7,8 @@ if (isset($_POST['saveSundayLG']))
     $year = $_POST['Year'];
     $sunday = $_POST['Sunday'];
     $lifegroup = $_POST['Lifegroup'];
+    $zsunday = $_POST['zSunday'];
+    $zlifegroup = $_POST['zLifegroup'];
     $mentor = $_POST['Mentor'];
     $networkLeader = $_POST['NetworkLeader'];
     $sundayCheck = $_POST['Sundaycheck'];
@@ -46,13 +48,13 @@ if (isset($_POST['saveSundayLG']))
                                         if($queryResult > 0)
                                         {
                                             //query for update
-                                            $sql1 = "UPDATE tblsundaylgattendance SET Name='$name',NetworkLeader='$networkLeader',Mentor='$mentor',zMonth='$month',zMonthDigit='$monthDigit',zYear='$year',".$sunday."='P',".$lifegroup."='P'
+                                            $sql1 = "UPDATE tblsundaylgattendance SET Name='$name',NetworkLeader='$networkLeader',Mentor='$mentor',zMonth='$month',zMonthDigit='$monthDigit',zYear='$year',".$sunday."='$zsunday',".$lifegroup."='$zlifegroup'
                                             WHERE Name like '%".$name."%' AND zMonth='".$month."' AND zYear='".$year."'";
                                         }  
                                         else{
                                             //query for insert
                                             $sql1 = "INSERT INTO tblsundaylgattendance(Name,NetworkLeader,Mentor,zMonth,zMonthDigit,zYear,".$sunday.",".$lifegroup.") 
-                                            VALUES('$name', '$networkLeader', '$mentor', '$month', '$monthDigit', '$year', 'P', 'P')";
+                                            VALUES('$name', '$networkLeader', '$mentor', '$month', '$monthDigit', '$year', '$zsunday', '$zlifegroup')";
                                         } 
                                         $query = mysqli_query($conn, $sql1) or die(mysqli_error($conn));
                                         header("Location: ../Pages/SundayLGAttendance.php?result=saved");
@@ -68,13 +70,13 @@ if (isset($_POST['saveSundayLG']))
                                         if($queryResult > 0)
                                         {
                                             //query for update
-                                            $sql1 = "UPDATE tblsundaylgattendance SET Name='$name',NetworkLeader='$networkLeader',Mentor='$mentor',zMonth='$month',zMonthDigit='$monthDigit',zYear='$year',".$lifegroup."='P'
+                                            $sql1 = "UPDATE tblsundaylgattendance SET Name='$name',NetworkLeader='$networkLeader',Mentor='$mentor',zMonth='$month',zMonthDigit='$monthDigit',zYear='$year',".$lifegroup."='$zlifegroup'
                                             WHERE Name like '%".$name."%' AND zMonth='".$month."' AND zYear='".$year."'";
                                         }  
                                         else{
                                             //query for insert
                                             $sql1 = "INSERT INTO tblsundaylgattendance(Name,NetworkLeader,Mentor,zMonth,zMonthDigit,zYear,".$lifegroup.") 
-                                            VALUES('$name', '$networkLeader', '$mentor', '$month', '$monthDigit', '$year', 'P')";
+                                            VALUES('$name', '$networkLeader', '$mentor', '$month', '$monthDigit', '$year', '$zlifegroup')";
                                         } 
                                         $query = mysqli_query($conn, $sql1) or die(mysqli_error($conn));
                                         header("Location: ../Pages/SundayLGAttendance.php?result=saved");
@@ -89,13 +91,13 @@ if (isset($_POST['saveSundayLG']))
         if($queryResult > 0)
         {
             //query for update
-            $sql1 = "UPDATE tblsundaylgattendance SET Name='$name',NetworkLeader='$networkLeader',Mentor='$mentor',zMonth='$month',zMonthDigit='$monthDigit',zYear='$year',".$sunday."='P'
+            $sql1 = "UPDATE tblsundaylgattendance SET Name='$name',NetworkLeader='$networkLeader',Mentor='$mentor',zMonth='$month',zMonthDigit='$monthDigit',zYear='$year',".$sunday."='$zsunday'
             WHERE Name like '%".$name."%' AND zMonth='".$month."' AND zYear='".$year."'";
         }  
         else{
             //query for insert
             $sql1 = "INSERT INTO tblsundaylgattendance(Name,NetworkLeader,Mentor,zMonth,zMonthDigit,zYear,".$sunday.") 
-            VALUES('$name', '$networkLeader', '$mentor', '$month','$monthDigit', '$year', 'P')";
+            VALUES('$name', '$networkLeader', '$mentor', '$month','$monthDigit', '$year', '$zsunday')";
         } 
         $query = mysqli_query($conn, $sql1) or die(mysqli_error($conn));
         header("Location: ../Pages/SundayLGAttendance.php?result=saved");
