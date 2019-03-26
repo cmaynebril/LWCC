@@ -194,9 +194,9 @@
 
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="card" style="height: 100%;">
+                    <div class="card" style="height: 500px">
                         <div class="card-body">
-                        <div class="table-responsive-lg" style="height: 100%;">
+                        <div class="table-responsive" style="max-height:479px">
                             <table class="table table-hover">
                                 <thead class="thead-light" style="text-align:center">
                                     <tr>
@@ -218,7 +218,7 @@
                                 </thead>
 
                                 <?php
-                                    $sql = "SELECT * FROM tblmembers";
+                                    $sql = "SELECT * FROM tblmembers ORDER BY Name ASC";
                                     $result = mysqli_query($conn, $sql);
                                     $queryResult = mysqli_num_rows($result);
                                     if($queryResult > 0)
