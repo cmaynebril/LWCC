@@ -239,7 +239,7 @@
         <div class="col-lg-12">
             <div class="card" style="height: 500px;">
                 <div class="card-body">
-                    <div class="table-responsive-lg" style="max-height:479px;">
+                    <div class="table-responsive" style="max-height:479px" >
                         <table class="table table-hover">
                             <thead class="thead-light" style="text-align:center">
                                 <tr>
@@ -261,14 +261,14 @@
                             </thead>
                             <?php
                             if(isset($_POST['Filter'])){
-                                $sql = "SELECT * FROM tblsundaylgattendance WHERE zMonth='".$_POST['FilterMonth']."' AND zYear='".$_POST['FilterYear']."' AND NetworkLeader='".$_SESSION['network']."' ORDER BY  zYear,zMonthDigit  ASC";
+                                $sql = "SELECT * FROM tblsundaylgattendance WHERE zMonth='".$_POST['FilterMonth']."' AND zYear='".$_POST['FilterYear']."' AND NetworkLeader='".$_SESSION['network']."' ORDER BY  zYear,zMonthDigit,Name ASC";
                                 $result = mysqli_query($conn, $sql);
                                 $queryResult = mysqli_num_rows($result);
                                 if($queryResult > 0)    
                                     {
                                         while ($row = mysqli_fetch_assoc($result)){
                                             echo '
-                                            <tbody >
+                                            <tbody>
                                                 <tr>
                                                     <td>'.$row["Name"].'</td>
                                                     <td>'.$row["zMonth"].'</td>
@@ -294,7 +294,7 @@
 
                             }
                             else{
-                                $sql = "SELECT * FROM tblsundaylgattendance WHERE NetworkLeader='".$_SESSION['network']."' ORDER BY zYear,zMonthDigit ASC";
+                                $sql = "SELECT * FROM tblsundaylgattendance WHERE NetworkLeader='".$_SESSION['network']."' ORDER BY zYear,zMonthDigit,Name ASC";
                                 $result = mysqli_query($conn, $sql);
                                 $queryResult = mysqli_num_rows($result);
                                 if($queryResult > 0)    
