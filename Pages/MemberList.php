@@ -12,8 +12,11 @@
             }
         }
         ?>
+
+        
         <form class="form-inline">
             <div class="text-right">
+                <input class="form-control" id="myInput" type="text" placeholder="Search..">
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#AddNewMember">
                 Add New Member
                 </button>    
@@ -225,7 +228,7 @@
                                     {
                                         while ($row = mysqli_fetch_assoc($result)){
                                             echo '
-                                            <tbody >
+                                            <tbody id="myTable">
                                                 <tr>
                                                     <td>'.$row["Name"].'</td>
                                                     <td>'.$row["Address"].'</td>
@@ -490,5 +493,16 @@ if(isset($_GET['edit'])){
 
 ?>
         
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
     </body>
 </html>
