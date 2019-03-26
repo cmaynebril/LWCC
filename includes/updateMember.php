@@ -1,7 +1,7 @@
 <?php
 
     require 'dbh.php';
-    $ID = $_GET[ID];
+    $ID = $_GET['ID'];
     $name = $_POST['MemberName'];
     $address = $_POST['Address'];
     $contactNumber = $_POST['ContactNumber'];
@@ -24,5 +24,5 @@
            WHERE ID=$ID";
 			
 					$query = mysqli_query($conn, $sql) or die(mysqli_error($conn));
-                    header("Location: ../pages/MemberList.php?member=updated");
+                    header("Location: ../Pages/MemberList.php");
                     exit();
