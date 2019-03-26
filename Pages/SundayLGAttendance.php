@@ -6,6 +6,7 @@
 <div class="container-fluid" style="padding-top:100px;">
     <form class="form-inline" action="SundayLGAttendance.php" method="POST">
         <div class="text-right">
+        <input class="form-control" id="myInput" type="text" placeholder="Search..">
         <?php
         if(isset($_POST["Filter"]))
         {
@@ -193,14 +194,25 @@
                                 </label>
                         </div>
                         <div class="col-lg-9">
-                            <select class="form-control" name="Sunday">
-                                <option value=" "> </option>
-                                <option value="1stSunday">1st Week</option>
-                                <option value="2ndSunday">2nd Week</option>
-                                <option value="3rdSunday">3rd Week</option>
-                                <option value="4thSunday">4th Week</option>
-                                <option value="5thSunday">5th Week</option>            
-                            </select>        
+                            <div class="row"> 
+                                <div class="col-lg-6">
+                                    <select class="form-control" name="Sunday">
+                                    <option value=" "> </option>
+                                    <option value="1stSunday">1st Week</option>
+                                    <option value="2ndSunday">2nd Week</option>
+                                    <option value="3rdSunday">3rd Week</option>
+                                    <option value="4thSunday">4th Week</option>
+                                    <option value="5thSunday">5th Week</option>            
+                                    </select>     
+                                </div>
+                                <div class="col-lg-6"> 
+                                    <select class="form-control" name="zSunday">
+                                    <option value=" "> </option>
+                                    <option value="Absent">Absent</option>
+                                    <option value="Present">Present</option>
+                                    </select>    
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -212,15 +224,26 @@
                             </label>
                         </div>
                         <div class="col-lg-9">
-                                <select class="form-control" name="Lifegroup">
+                            <div class="row"> 
+                                <div class="col-lg-6">
+                                    <select class="form-control" name="Lifegroup">
                                         <option value=" "> </option>
                                         <option value="1stLifegroup">1st Week</option>
                                         <option value="2ndLifegroup">2nd Week</option>
                                         <option value="3rdLifegroup">3rd Week</option>
                                         <option value="4thLifegroup">4th Week</option>
-                                        <option value="5thLifegroup">5th Week</option>
-                                </select>
+                                        <option value="5thLifegroup">5th Week</option>   
+                                    </select> 
+                                </div>
+                                <div class="col-lg-6"> 
+                                    <select class="form-control" name="zLifegroup">
+                                    <option value=" "> </option>
+                                    <option value="Absent">Absent</option>
+                                    <option value="Present">Present</option>
+                                    </select>    
+                                </div>
                             </div>
+                        </div>
                     </div>
 
                    
@@ -268,7 +291,7 @@
                                     {
                                         while ($row = mysqli_fetch_assoc($result)){
                                             echo '
-                                            <tbody>
+                                            <tbody id="myTable">
                                                 <tr>
                                                     <td>'.$row["Name"].'</td>
                                                     <td>'.$row["zMonth"].'</td>
@@ -301,7 +324,7 @@
                                     {
                                         while ($row = mysqli_fetch_assoc($result)){
                                             echo '
-                                            <tbody >
+                                            <tbody id="myTable">
                                                 <tr>
                                                     <td>'.$row["Name"].'</td>
                                                     <td>'.$row["zMonth"].'</td>
@@ -324,7 +347,7 @@
                                             ';
                                         }
                                     } 
-                                }           
+                                }
                                 ?>    
                         </table>
                     </div>
@@ -349,6 +372,27 @@
 <script src="~/vendor/select2/select2.min.js"></script>
 <!--===============================================================================================-->
 <script src="~/js/main.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+
+  //OUT will turn RED
+  $(document).ready(function () {
+        $('table td').each(function () {
+            if ($(this).text() == 'Absent') {
+                $(this).css('color', 'red');
+            }
+        });
+    });
+</script>
 
 </body>
 </html>
