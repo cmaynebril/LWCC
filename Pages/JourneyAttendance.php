@@ -7,54 +7,7 @@
 <form class="form-inline" action="JourneyAttendance.php" method="POST">
     <form class="form-inline">
         <div class="text-right">
-        
-        <?php
-        if(isset($_POST["Filter"]))
-        {
-            echo '  
-                <select class="form-control" name="FilterMember">
-                <option value="'.$_POST["FilterMember"].'">'.$_POST["FilterMember"].'</option>
-                ';
-                $sql = "SELECT * FROM tblmembers WHERE Mentor='".$_SESSION['Mentorname']."' AND NetworkLeader='".$_SESSION['network']."' ORDER BY Name ASC";
-                $result = mysqli_query($conn, $sql);
-                $queryResult = mysqli_num_rows($result);
-                    if($queryResult > 0)
-                    {
-                        while ($row = mysqli_fetch_assoc($result)){
-                            echo '
-                            <option value="'.$row["Name"].'">'.$row["Name"].'</option>
-                            ';
-                            }
-                    }   
-            echo '
-            </select>
-           ';
-        }
-        else {
-            echo '
-            <select class="form-control" name="FilterMember">
-            <option value=" "> </option>';
-              
-                    $sql = "SELECT * FROM tblmembers WHERE Mentor='".$_SESSION['Mentorname']."' AND NetworkLeader='".$_SESSION['network']."' ORDER BY Name ASC";
-                    $result = mysqli_query($conn, $sql);
-                    $queryResult = mysqli_num_rows($result);
-                        if($queryResult > 0)
-                        {
-                            while ($row = mysqli_fetch_assoc($result)){
-                                echo '
-                                <option value="'.$row["Name"].'">'.$row["Name"].'</option>
-                                ';
-                                }
-                        }   
-            echo '
-            </select>   '; 
-        }
-            ?>
-                            
-            <button type="submit" name="Filter" class="btn btn-secondary">
-                Filter attendance
-            </button>
-
+        <input class="form-control" id="myInput" type="text" placeholder="Search..">
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#AddAttendance">
                 Add Attendance
             </button>
@@ -244,64 +197,6 @@
                             </tr>
                         </thead>
                      <?php
-                     if(isset($_POST['Filter'])){
-                        $sql = "SELECT * FROM tbllifeprocess WHERE Name like '%".$_POST['FilterMember']."%'";
-                        $result = mysqli_query($conn, $sql);
-                        $queryResult = mysqli_num_rows($result);
-                        if($queryResult > 0) {
-                            while ($row = mysqli_fetch_assoc($result)){
-                                echo '
-                                <tbody >
-                                    <tr>
-                                        <td>'.$row["Name"].'</td>
-                                        <td>'.$row["LifeTract"].'</td>
-                                        <td>'.$row["dtLifeTract"].'</td>
-                                        <td>'.$row["LifeStart1"].'</td>
-                                        <td>'.$row["dtLifeStart1"].'</td>
-                                        <td>'.$row["LifeStart2"].'</td>
-                                        <td>'.$row["dtLifeStart2"].'</td>
-                                        <td>'.$row["LifeStart3"].'</td>
-                                        <td>'.$row["dtLifeStart3"].'</td>
-                                        <td>'.$row["LifeStart4"].'</td>
-                                        <td>'.$row["dtLifeStart4"].'</td>
-                                        <td>'.$row["LifeStart5"].'</td>
-                                        <td>'.$row["dtLifeStart5"].'</td>
-                                        <td>'.$row["LifeRetreat"].'</td>
-                                        <td>'.$row["dtLifeRetreat"].'</td>
-                                        <td>'.$row["LifeStyle1"].'</td>
-                                        <td>'.$row["dtLifeStyle1"].'</td>
-                                        <td>'.$row["LifeStyle2"].'</td>
-                                        <td>'.$row["dtLifeStyle2"].'</td>
-                                        <td>'.$row["LifeStyle3"].'</td>
-                                        <td>'.$row["dtLifeStyle3"].'</td>
-                                        <td>'.$row["LifeStyle4"].'</td>
-                                        <td>'.$row["dtLifeStyle4"].'</td>
-                                        <td>'.$row["LifeStyle5"].'</td>
-                                        <td>'.$row["dtLifeStyle5"].'</td>
-                                        <td>'.$row["LifeStyle6"].'</td>
-                                        <td>'.$row["dtLifeStyle6"].'</td>
-                                        <td>'.$row["LifeStyle7"].'</td>
-                                        <td>'.$row["dtLifeStyle7"].'</td>
-                                        <td>'.$row["LifeStyle8"].'</td>
-                                        <td>'.$row["dtLifeStyle8"].'</td>
-                                        <td>'.$row["LifeStyle9"].'</td>
-                                        <td>'.$row["dtLifeStyle9"].'</td>
-                                        <td>'.$row["FC"].'</td>
-                                        <td>'.$row["dtFC"].'</td>
-                                        <td>'.$row["MDC"].'</td>
-                                        <td>'.$row["dtMDC"].'</td>
-                                        <td>'.$row["LGC"].'</td>
-                                        <td>'.$row["dtLGC"].'</td>
-                                        <td>'.$row["SATELLITE"].'</td>
-                                        <td>'.$row["dtSATELLITE"].'</td>
-                                        <td>'.$row["Kainos"].'</td>
-                                        <td>'.$row["dtKainos"].'</td>
-                                    </tr>
-                                </tbody>
-                                ';
-                            }
-                        } 
-                     } else {
                         $sql = "SELECT * FROM tbllifeprocess ORDER BY Name ASC";
                         $result = mysqli_query($conn, $sql);
                         $queryResult = mysqli_num_rows($result);
@@ -309,7 +204,7 @@
                             {
                                 while ($row = mysqli_fetch_assoc($result)){
                                     echo '
-                                    <tbody >
+                                    <tbody id="myTable">
                                         <tr>
                                             <td>'.$row["Name"].'</td>
                                             <td>'.$row["LifeTract"].'</td>
@@ -359,9 +254,8 @@
                                     ';
                                 }
                             } 
-                    }
                                 
-                                    ?>
+                            ?>
 
                     </table>
                     </div>
@@ -389,5 +283,18 @@
 <script src="~/vendor/select2/select2.min.js"></script>
 <!--===============================================================================================-->
 <script src="~/js/main.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
+
 </body>
 </html>
